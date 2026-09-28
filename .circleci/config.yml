@@ -3,7 +3,7 @@ version: 2.1
 executors:
   go-sdk:
     docker:
-    - image: golang:alpine
+    - image: golang
       auth:
         username: $DOCKER_LOGIN
         password: $DOCKER_ACCESSTOKEN
