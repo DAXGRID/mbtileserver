@@ -2,7 +2,7 @@
 FROM golang:alpine
 
 WORKDIR /
-RUN apk add git build-base
+RUN apk upgrade --no-cache && apk add --no-cache git build-base
 COPY . .
 
 RUN GOOS=linux go build -o /mbtileserver
@@ -12,6 +12,9 @@ RUN GOOS=linux go build -o /mbtileserver
 FROM alpine
 
 WORKDIR /
+
+# Update all installed packages
+RUN apk upgrade --no-cache
 
 # Link libs to get around issues using musl
 RUN mkdir /lib64 && ln -s /lib/libc.musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2
